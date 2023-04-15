@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Chat Widget</title>
-    <!-- Include any necessary CSS styles or libraries here -->
+    <title>Noel</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
-    <div id="chat-container">
-      <div id="chat-log"></div>
-      <input type="text" id="user-input" />
-      <button onclick="sendMessage()">Send</button>
+    <div
+      id="chat-container"
+      class="border-2 border-solid border-gray-900 px-4 py-4 m-4 text-gray-900 max-w-sm"
+    >
+      <div id="chat-log" class="p-3 rounded-md bg-gray-300"></div>
+      <input
+        type="text"
+        id="user-input"
+        class="mx-4 my-4 border-2 border-solid border-gray-900"
+      />
+      <button
+        onclick="sendMessage()"
+        class="bg-gray-900 text-white px-3 py-1 mx-4 my-4"
+      >
+        Send
+      </button>
     </div>
     <!-- Include any necessary JavaScript libraries here -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
