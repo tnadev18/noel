@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css"
+    />
+    <link rel="stylesheet" href="style2.css" />
+    <title>Chat Window</title>
+  </head>
+  <body>
+    <section>
+      <button class="chat-btn">
+        <i class="material-icons"> comment </i>
+      </button>
+
+      <div class="chat-popup" id="chat-container">
+        <!-- <div class="badge">1</div> -->
+        <div class="chat-area">
+          <div class="income-msg" id="chat-log">
+            <img
+              src="https://d2cbg94ubxgsnp.cloudfront.net/Pictures/2000x1125/9/9/3/512993_shutterstock_715962319converted_920340.png"
+              class="avatar"
+              alt=""
+            />
+            <span class="msg"> Hi, How can I help you?</span>
+          </div>
+        </div>
+
+        <div class="input-area">
+          <input type="text" id="user-input" class="input-aa" />
+          <button id="emoji-btn">&#127773;</button>
+          <button class="submit" onclick="sendMessage()">
+            <i class="material-icons"> send</i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@3.1.1/dist/index.min.js"></script>
+    <script src="main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      function sendMessage() {
+        // Get user input
+        var userMessage = $("#user-input").val();
+
+        // Send user input to Flask API
+        $.ajax({
+          url: "http://127.0.0.1:5000/api/send_message", // Endpoint of your Flask API
+          type: "POST",
+          data: JSON.stringify({ message: userMessage }),
+          contentType: "application/json",
+          success: function (data) {
+            // Update chat log with AI response
+            $("#chat-log").append("<p>User: " + userMessage + "</p>");
+            $("#chat-log").append("<p>AI: " + data.response + "</p>");
+            // Clear user input
+            $("#user-input").val("");
+          },
+        });
+      }
+    </script>
+  </body>
+</html>
